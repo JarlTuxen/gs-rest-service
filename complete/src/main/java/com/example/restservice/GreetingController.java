@@ -23,20 +23,25 @@ public class GreetingController {
 
 	/*
 
-	@GetMapping
+	@GetMapping("/greeting")
 	public ResponseEntity<List<Greeting>> listAll()
+		return new ResponseEntity<>(greetings, HttpStatus.OK);
 
-	@GetMapping("/{id}")
+	@GetMapping("/greeting/{id}")
 	public ResponseEntity<Greeting> findGreetingById(@PathVariable("id") long id)
-
-	@PostMapping
+		return new ResponseEntity<Greeting>(foundGreeting, HttpStatus.OK);
+		
+	@PostMapping("/greeting")
 	public ResponseEntity<Greeting> createGreeting(@RequestBody Greeting greeting)
+		return new ResponseEntitiy<Greeting>(createdGreeting, HttpStatus.OK);
 
-	@PutMapping("/{id}")
+	@PutMapping("/greeting/{id}")
 	public ResponseEntity<Greeting> updateGreeting(@PathVariable("id") long id, @RequestBody Greeting greeting)
+		return new ResponseEntity<Greeting>(updatedGreeting, HttpStatus.OK);
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/greeting/{id}")
 	public ResponseEntity<?> deleteGreeting(@PathVariable("id") long id)
+		return new ResponseEntity<String>("Slettet: " + deletedGreeting, HttpStatus.OK);
 
 	 */
 }

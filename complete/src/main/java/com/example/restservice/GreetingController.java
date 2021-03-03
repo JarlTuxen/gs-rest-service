@@ -4,7 +4,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*")
+//CrossOrigin bestemmer, hvor kald må komme fra
+@CrossOrigin(origins = "*") //kan afgrænses til specifikke ip-adresser
 @RestController
 public class GreetingController {
 
@@ -22,7 +23,7 @@ public class GreetingController {
 	}
 
 	/*
-
+	//forkerte HttpStatus-koder - se Rest Best Practices
 	@GetMapping("/greeting")
 	public ResponseEntity<List<Greeting>> listAll()
 		return new ResponseEntity<>(greetings, HttpStatus.OK);

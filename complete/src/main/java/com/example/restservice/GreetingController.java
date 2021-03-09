@@ -23,6 +23,12 @@ public class GreetingController {
 	@PutMapping("/greetings/{id}")
 	public Greeting greetingUpdate(@PathVariable("id") long id, @RequestBody Greeting greeting ) {
 		return new Greeting(id + greeting.getId(), greeting.getContent());
+		//greetingService.findByID(id)
+		//if Greeting with id exist
+		//greetingService.update(greeting)
+		//return new ResponseEntity<Greeting>(updatedGreeting, HttpStatus.OK); //200 OK
+		//else //Greeting with id does not exist
+		//return new ResponseEntity<>(HttpStatus.NOT_FOUND); //404 NOT_FOUND
 	}
 
 	@PostMapping("/greetings")

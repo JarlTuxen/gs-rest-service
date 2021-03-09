@@ -20,20 +20,30 @@ public class GreetingController {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 
-	@PutMapping("/greeting/{id}")
+	@PutMapping("/greetings/{id}")
 	public Greeting greetingUpdate(@PathVariable("id") long id, @RequestBody Greeting greeting ) {
 		return new Greeting(id + greeting.getId(), greeting.getContent());
 	}
 
-	@GetMapping("/greeting/{id}")
+	@PostMapping("/greetings")
+	public ResponseEntity<Greeting> create(@RequestBody Greeting greeting) {
+		Greeting newGreeting = new Greeting(counter.incrementAndGet(), greeting.getContent());
+		//tilføj header "location" med URI "/greetings/{id}
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("location", "/greetings/" + greeting.getId());
+		return new ResponseEntity<Greeting>(newGreeting, headers, HttpStatus.CREATED); //201 CREATED
+	}
+/*
+	@GetMapping("/greetings/{id}")
 	public ResponseEntity<Greeting> findGreetingById(@PathVariable("id") long id) {
 		Greeting greeting = new Greeting(id, String.format(template, "findByID"));
+		//tilføj header "location" med URI
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("location", "/greeting/" + greeting.getId());
-		return new ResponseEntity<Greeting>(greeting, headers, HttpStatus.CREATED);
+		headers.add("location", "/greetings/" + greeting.getId());
+		return new ResponseEntity<Greeting>(greeting, headers, HttpStatus.CREATED); //201 CREATED
 		//return ResponseEntity.status(HttpStatus.CREATED).header("location", "/greeting/" + greeting.getId()).body(greeting);
 	}
-
+*/
 	/*
 	//forkerte HttpStatus-koder - se Rest Best Practices & koder i kommentar
 	@GetMapping("/greeting")
